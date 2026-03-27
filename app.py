@@ -130,6 +130,18 @@ def load_model():
         st.error(f"Model load error: {e}")
         return None
 
+st.write("Current working dir:", os.getcwd())
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+st.write("Base dir:", BASE_DIR)
+
+st.write("Files in base:", os.listdir(BASE_DIR))
+
+model_dir = os.path.join(BASE_DIR, "model")
+if os.path.exists(model_dir):
+    st.write("Model folder contents:", os.listdir(model_dir))
+else:
+    st.write("Model folder NOT FOUND")
 
 def run_detection(image_pil, model):
     """
