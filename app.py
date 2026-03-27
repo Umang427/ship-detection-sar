@@ -7,6 +7,10 @@ import zipfile
 import csv
 import time
 
+
+os.system("pip uninstall -y opencv-python opencv-python-headless")
+os.system("pip install opencv-python-headless==4.8.1.78")
+
 # ── PAGE CONFIG ─────────────────────────────────────────────────────────────────
 st.set_page_config(
     page_title="SARShield · Maritime SAR Analysis",
