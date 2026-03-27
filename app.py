@@ -111,13 +111,23 @@ div[data-testid="stImage"] img { border-radius:8px; border:1px solid var(--borde
 
 # ── MODEL ───────────────────────────────────────────────────────────────────────
 @st.cache_resource(show_spinner=False)
+@st.cache_resource(show_spinner=False)
 def load_model():
     try:
         from ultralytics import YOLO
-        if not os.path.exists("model/best.pt"):
+        import os
+
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        MODEL_PATH = os.path.join(BASE_DIR, "model", "best.pt")
+
+        if not os.path.exists(MODEL_PATH):
+            st.error(f"Model not found at: {MODEL_PATH}")
             return None
-        return YOLO("model/best.pt")
-    except Exception:
+
+        return YOLO(MODEL_PATH)
+
+    except Exception as e:
+        st.error(f"Model load error: {e}")
         return None
 
 
